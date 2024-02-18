@@ -1,8 +1,7 @@
 
-export { createCard, deleteCard, placeslist};
+export { createCard, deleteCard};
 
 const cardTemplate = document.querySelector("#card-template").content;
-const placeslist = document.querySelector(".places__list");
 
 function createCard(element, deleteItem) {
   const cardElement = cardTemplate.querySelector(".places__item").cloneNode(true);
