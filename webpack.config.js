@@ -12,7 +12,10 @@ module.exports = {
     },
     mode: 'development',
     devServer: {
-      static: path.resolve(__dirname, './dist'), 
+      static: [
+        { directory: path.resolve(__dirname, './dist') },
+        { directory: path.resolve(__dirname, './src/images') }, 
+      ],
       compress: true, 
       port: 8080, 
       open: true 

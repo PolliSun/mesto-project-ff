@@ -1,14 +1,24 @@
 
-export { createCard, deleteCard};
+export { createCard, deleteCard, toggleLikeButtonClass };
 
 const cardTemplate = document.querySelector("#card-template").content;
 
-function createCard(element, deleteItem) {
+function createCard(element, deleteItem, cardImagePopup) {
   const cardElement = cardTemplate.querySelector(".places__item").cloneNode(true);
 
-  cardElement.querySelector(".card__image").src = element.link;
-  cardElement.querySelector(".card__image").alt = element.name;
-  cardElement.querySelector(".card__title").textContent = element.name;
+  const cardImage = cardElement.querySelector(".card__image")
+  const cardTitle = cardElement.querySelector(".card__title")
+
+  cardImage.src = element.link;
+  cardTitle.alt = element.name;
+  cardTitle.textContent = element.name;
+
+  cardImage.addEventListener("click", () => cardImagePopup(element.link));
+
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", function () {
+    toggleLikeButtonClass (likeButton);
+  });
 
   const deleteButton = cardElement.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", function () {
@@ -18,6 +28,9 @@ function createCard(element, deleteItem) {
   return cardElement;
 }
 
+const toggleLikeButtonClass  = (likeButton) => likeButton.classList.toggle('card__like-button_is-active');
+
 const deleteCard = (cardElement) => cardElement.remove();
+
 
 
