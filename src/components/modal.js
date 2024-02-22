@@ -1,27 +1,26 @@
-export { openModal, closeModal};
+export { openModal, closeModal };
 
-function openModal (Popup){
-    Popup.classList.add('popup_is-opened');
+function openModal(popup) {
+  popup.classList.add("popup_is-opened");
 
-    document.addEventListener('keydown', event => closeWithEsc(event, Popup));
-    Popup.addEventListener('click', event => closeWithOverlay(event, Popup));
-};
+  popup.closeWithEsc = (event) => escapeKeyPress(event, popup);
+  document.addEventListener("keydown", popup.closeWithEsc);
 
-function closeModal(Popup) {
-    Popup.classList.remove('popup_is-opened');
-
-    document.removeEventListener('keydown', event => closeWithEsc(event, Popup));
-    Popup.removeEventListener('click', event => closeWithOverlay(event, Popup));
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      closeModal(popup);
+    }
+  });
 }
 
-function closeWithEsc(event, Popup){
-    if(event.key === 'Escape'){
-        closeModal(Popup);
-    }
+function closeModal(popup) {
+  popup.classList.remove("popup_is-opened");
+
+  document.removeEventListener("keydown", popup.closeWithEsc);
 }
 
-function closeWithOverlay(event, Popup) {
-    if (event.target === Popup) {
-        closeModal(Popup);
-    }
+function escapeKeyPress(event, popup) {
+  if (event.key === "Escape") {
+    closeModal(popup);
+  }
 }
