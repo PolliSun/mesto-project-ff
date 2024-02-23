@@ -72,7 +72,7 @@ function getFormPopup(popup) {
 }
 
 function handleClickEditProfileButton() {
-  openModal(editProfilePopup)
+  openModal(editProfilePopup);
   nameInput.value = nameValue.textContent;
   jobInput.value = jobValue.textContent;
 }
