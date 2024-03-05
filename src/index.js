@@ -3,7 +3,8 @@
 import "./pages/index.css";
 import { openModal, closeModal } from "./components/modal.js";
 import {createCard, deleteCard, toggleLikeButtonClass,} from "./components/card.js";
-import { initialCards } from "./scripts/cards.js";
+import {initialCards } from "./scripts/cards.js";
+import {enableValidation} from "./components/validation.js";
 
 import card_1Image from "./images/card_1.jpg";
 import card_2Image from "./images/card_2.jpg";
@@ -35,6 +36,7 @@ function handleImageClick(imageLink, imageTitle) {
   popupImage.src = imageLink;
   popupImage.alt = imageTitle;
   popupCaption.textContent = imageTitle;
+  //clearValidation(getFormPopup, validationConfig);
   openModal(imagePopup);
 }
 
@@ -75,6 +77,7 @@ function handleClickEditProfileButton() {
   openModal(editProfilePopup);
   nameInput.value = nameValue.textContent;
   jobInput.value = jobValue.textContent;
+  //clearValidation(editProfilePopup, validationConfig);
 }
 
 /*Функция редактирования профиля*/
@@ -96,5 +99,21 @@ function handleCardFormSubmit(event) {
   placesList.prepend(newCard);
   event.target.reset();
 
+  //clearValidation(newProfileCardPopup, validationConfig);
   closeModal(newProfileCardPopup);
 }
+
+/*Функции валидации*/
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+enableValidation(validationConfig);
+
+
