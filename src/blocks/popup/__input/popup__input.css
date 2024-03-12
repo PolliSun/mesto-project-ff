@@ -21,25 +21,34 @@
   }
 }
 
-.popup__button_disabled{
- border: rgba(0, 0, 0, 1);
- color: rgba(0, 0, 0, 1);
- background-color: transparent;
- pointer-events: none;
+.card__like-button-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.card__like-counter{
+  font-size: 13px;
+  display: block; 
+  color: #000;
+  text-align: center;
+  visibility: hidden;
+}
+
+.card__like-counter_is-active {
+  visibility: visible; 
 }
 
 .popup__error {
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   color: #f00;
-}
-
-.popup__error:last-of-type {
-  margin-top: 5px;
 }
 
 .popup__error_visible {
   display: block;
+}
+
+.popup__input_type_error{
+border-bottom: 1px solid red;
 }
