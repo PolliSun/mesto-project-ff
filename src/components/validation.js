@@ -124,7 +124,4 @@ const clearValidation = (formElement, validationConfig) => {
       validationConfig.errorClass
     );
   });
- //toggleButtonState(inputList, submitButtonElement, validationConfig.inactiveButtonClass);
-  //submitButtonElement.disabled = false;
-  //submitButtonElement.classList.remove(validationConfig.inactiveButtonClass);
 };
