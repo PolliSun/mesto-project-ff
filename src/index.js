@@ -13,7 +13,7 @@ import {
   createCard as apiCreateCard,
   putLikeCard,
   deleteLikeCard,
-  apiDeleteCard,
+  deleteCardApi,
 } from "./components/api.js";
 
 import card_1Image from "./images/card_1.jpg";
@@ -212,7 +212,7 @@ deleteCardForm.addEventListener("submit", (event) => {
   handleDeleteCard(
     сardIdToDelete,
     cardElementToDelete,
-    apiDeleteCard,
+    deleteCardApi,
     closeModal,
     deleteCardPopup
   );

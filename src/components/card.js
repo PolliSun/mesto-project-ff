@@ -23,8 +23,8 @@ function createCard(
   cardTitle.textContent = card.name;
 
   updateLikesDisplay(card, cardCounter);
-  cardCounterFun(card.likes, userDataId, likeButton);
-  deleteButtonFun(card, userDataId, cardElement, deleteButton, handleDeleteCard, deleteCardAction);
+  countingCardLikes(card.likes, userDataId, likeButton);
+  deletingCardButton(card, userDataId, cardElement, deleteButton, handleDeleteCard, deleteCardAction);
 
   cardImage.addEventListener("click", () => {
     handleImageClick(card.link, card.name);
@@ -41,13 +41,13 @@ function createCard(
   return cardElement;
 }
 
-function cardCounterFun(likesArray, userDataId, likeButton) {
+function countingCardLikes(likesArray, userDataId, likeButton) {
   if (likesArray.some((item) => item._id === userDataId)) {
     likeButton.classList.add("card__like-button_is-active");
   }
 }
 
-function deleteButtonFun(
+function deletingCardButton(
   card,
   userDataId,
   cardElement,
@@ -67,11 +67,11 @@ function deleteButtonFun(
 function handleDeleteCard(
   cardId,
   cardElement,
-  apiDeleteCard,
+  deleteCardApi,
   closeModal,
   deleteCardPopup
 ) {
-  apiDeleteCard(cardId)
+  deleteCardApi(cardId)
     .then(() => {
       cardElement.remove();
       closeModal(deleteCardPopup);

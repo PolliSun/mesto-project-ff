@@ -3,7 +3,7 @@ export {
   getInitialCards,
   updateUserProfile,
   createCard,
-  apiDeleteCard,
+  deleteCardApi,
   putLikeCard,
   deleteLikeCard,
   updateUserAvatar,
@@ -58,7 +58,7 @@ const createCard = ({ name, link }) => {
   }).then(gethandleResponse);
 };
 
-const apiDeleteCard = (cardId) => {
+const deleteCardApi = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
