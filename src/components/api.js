@@ -1,14 +1,3 @@
-export {
-  getUserInfo,
-  getInitialCards,
-  updateUserProfile,
-  createCard,
-  deleteCardApi,
-  putLikeCard,
-  deleteLikeCard,
-  updateUserAvatar,
-};
-
 const config = {
   baseUrl: "https://nomoreparties.co/v1/wff-cohort-8",
   headers: {
@@ -17,74 +6,89 @@ const config = {
   },
 };
 
-const gethandleResponse = (res) => {
+const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 };
 
+function request(url, options) {
+  return fetch(url, options).then(handleResponse);
+}
+
 const getUserInfo = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
+  return request(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(gethandleResponse);
+  });
 };
 
 const getInitialCards = () => {
-  return fetch(`${config.baseUrl}/cards`, {
+  return request(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  }).then(gethandleResponse);
+  });
 };
 
 const updateUserProfile = (userData) => {
-  return fetch(`${config.baseUrl}/users/me`, {
+  return request(`${config.baseUrl}/users/me`, {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
       name: userData.name,
       about: userData.about,
     }),
-  }).then(gethandleResponse);
+  });
 };
 
-const createCard = ({ name, link }) => {
-  return fetch(`${config.baseUrl}/cards`, {
+const createCardApi = ({ name, link }) => {
+  return request(`${config.baseUrl}/cards`, {
     method: "POST",
     headers: config.headers,
     body: JSON.stringify({
       name,
       link,
     }),
-  }).then(gethandleResponse);
+  });
 };
 
 const deleteCardApi = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return request(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(gethandleResponse);
+  });
 };
 
 const putLikeCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+  return request(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(gethandleResponse);
+  });
 };
 
 const deleteLikeCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+  return request(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(gethandleResponse);
+  });
 };
 
 const updateUserAvatar = (avatarUrl) => {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
+  return request(`${config.baseUrl}/users/me/avatar`, {
     method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
       avatar: avatarUrl,
     }),
-  }).then(gethandleResponse);
+  });
+};
+
+export {
+  getUserInfo,
+  getInitialCards,
+  updateUserProfile,
+  createCardApi,
+  deleteCardApi,
+  putLikeCard,
+  deleteLikeCard,
+  updateUserAvatar,
 };

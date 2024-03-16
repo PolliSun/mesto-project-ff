@@ -1,5 +1,3 @@
-export { createCard, handleDeleteCard };
-
 function createCard(
   card,
   userDataId,
@@ -24,7 +22,14 @@ function createCard(
 
   updateLikesDisplay(card, cardCounter);
   countingCardLikes(card.likes, userDataId, likeButton);
-  deletingCardButton(card, userDataId, cardElement, deleteButton, handleDeleteCard, deleteCardAction);
+  deletingCardButton(
+    card,
+    userDataId,
+    cardElement,
+    deleteButton,
+    handleDeleteCard,
+    deleteCardAction
+  );
 
   cardImage.addEventListener("click", () => {
     handleImageClick(card.link, card.name);
@@ -84,8 +89,13 @@ function handleDeleteCard(
 function handleLikeCard(cardId, likeButton, cardCounter, action, userDataId) {
   action(cardId)
     .then((card) => {
-      const isLikedByUserAfterAction = card.likes.some((like) => like._id === userDataId);
-      likeButton.classList.toggle("card__like-button_is-active", isLikedByUserAfterAction);
+      const isLikedByUserAfterAction = card.likes.some(
+        (like) => like._id === userDataId
+      );
+      likeButton.classList.toggle(
+        "card__like-button_is-active",
+        isLikedByUserAfterAction
+      );
       updateLikesDisplay(card, cardCounter);
     })
     .catch((err) => {
@@ -96,5 +106,10 @@ function handleLikeCard(cardId, likeButton, cardCounter, action, userDataId) {
 function updateLikesDisplay(card, cardCounter) {
   cardCounter.textContent = card.likes.length;
 
-  cardCounter.classList.toggle("card__like-counter_is-active", card.likes.length > 0);
+  cardCounter.classList.toggle(
+    "card__like-counter_is-active",
+    card.likes.length > 0
+  );
 }
+
+export { createCard, handleDeleteCard };

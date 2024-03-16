@@ -1,5 +1,3 @@
-export { openModal, closeModal };
-
 function openModal(popup) {
   popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", handleEscape);
@@ -25,3 +23,5 @@ function handleOutsideClick(event) {
     closeModal(popup);
   }
 }
+
+export { openModal, closeModal };
