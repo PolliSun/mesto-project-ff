@@ -54,9 +54,7 @@ const formNewCard = getFormPopup(newCardPopup);
 const formEditAvatar = getFormPopup(editAvatarPopup);
 
 const placesList = document.querySelector(".places__list");
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".places__item");
+const cardTemplate = document.querySelector("#card-template").content.querySelector(".places__item");
 const imagePopup = document.querySelector(".popup_type_image");
 const popupImage = imagePopup.querySelector(".popup__image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
@@ -234,6 +232,8 @@ function loadInitialCards(location, userDataId, initialCards) {
   });
 }
 
+enableValidation(validationConfig);
+
 /*Настройка Промис*/
 
 Promise.all([getUserInfo(), getInitialCards()])
@@ -247,4 +247,4 @@ Promise.all([getUserInfo(), getInitialCards()])
     console.log(err);
   });
 
-enableValidation(validationConfig);
+
