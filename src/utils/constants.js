@@ -32,52 +32,14 @@ const validationConfig = {
   errorClass: "popup__error_visible",
 };
 
-const fillProfileData = ({ name, about, avatar }) => {
-  profileTitle.textContent = name;
-  profileDescription.textContent = about;
-  profileAvatar.style.backgroundImage = `url(${avatar})`;
-};
-
-const handleClickEditProfileButton = () => {
-  profileForm.elements.name.value = profileTitle.textContent;
-  profileForm.elements.description.value = profileDescription.textContent;
-  avatarForm.link.value = profileAvatar.style.backgroundImage.slice(5, -2);
-};
-
-const renderLoading = (
-  isLoading,
-  button,
-  buttonText = "Сохранить",
-  loadingText = "Сохранение..."
-) => {
-  button.textContent = isLoading ? loadingText : buttonText;
-};
-
-function handleSubmit(request, evt, loadingText = "Сохранение...") {
-  evt.preventDefault();
-
-  const submitButton = evt.submitter;
-  const initialText = submitButton.textContent;
-
-  renderLoading(true, submitButton, initialText, loadingText);
-  request()
-    .then(() => {
-      evt.target.reset();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      renderLoading(false, submitButton, initialText);
-    });
-}
-
 export {
   profileForm,
   cardForm,
   avatarForm,
   deleteCardForm,
   imagePopupBlock,
+  profileTitle,
+  profileDescription,
   profileAvatar,
   editProfileButton,
   addProfileButton,
@@ -90,7 +52,4 @@ export {
   cardTemplate,
   popupCaption,
   validationConfig,
-  fillProfileData,
-  handleClickEditProfileButton,
-  handleSubmit,
 };

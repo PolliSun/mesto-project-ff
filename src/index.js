@@ -21,6 +21,8 @@ import {
   avatarForm,
   deleteCardForm,
   imagePopupBlock,
+  profileTitle, 
+  profileDescription,
   profileAvatar,
   editProfileButton,
   addProfileButton,
@@ -33,14 +35,25 @@ import {
   cardTemplate,
   popupCaption,
   validationConfig,
-  fillProfileData,
-  handleClickEditProfileButton,
-  handleSubmit,
 } from "./utils/constants.js";
+
+import {handleSubmit} from "./utils/utils.js";
 
 let userId;
 let сardIdToDelete;
 let cardElementToDelete;
+
+const fillProfileData = ({ name, about, avatar }) => {
+  profileTitle.textContent = name;
+  profileDescription.textContent = about;
+  profileAvatar.style.backgroundImage = `url(${avatar})`;
+};
+
+const handleClickEditProfileButton = () => {
+  profileForm.elements.name.value = profileTitle.textContent;
+  profileForm.elements.description.value = profileDescription.textContent;
+  avatarForm.link.value = profileAvatar.style.backgroundImage.slice(5, -2);
+};
 
 document.querySelectorAll(".popup__close").forEach((button) => {
   button.addEventListener("click", () => closeModal(button.closest(".popup")));
